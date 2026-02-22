@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Nós - Lanches da Vila</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:wght@400;700&family=Karla:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --vermelho-vivo: #D32F2F;
+            --laranja-quente: #FF6F00;
+            --amarelo-mostarda: #F9A825;
+            --creme: #FFF8E1;
+            --marrom-escuro: #3E2723;
+            --verde-fresco: #388E3C;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Karla', sans-serif;
+            background: var(--creme);
+            color: var(--marrom-escuro);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 3rem;
+            background: rgba(62, 39, 35, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            animation: slideDown 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-family: 'Bebas Neue', cursive;
+            font-size: 1.3rem;
+            letter-spacing: 0.1em;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--amarelo-mostarda);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--amarelo-mostarda);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero About */
+        .hero-about {
+            height: 60vh;
+            background: linear-gradient(135deg, var(--marrom-escuro) 0%, #5D4037 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-about::before {
+            content: '🍔';
+            position: absolute;
+            font-size: 25rem;
+            opacity: 0.08;
+            transform: rotate(-15deg);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(-15deg); }
+            to { transform: rotate(345deg); }
+        }
+
+        .hero-about h1 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: clamp(3rem, 10vw, 7rem);
+            color: var(--amarelo-mostarda);
+            letter-spacing: 0.08em;
+            text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.3);
+            z-index: 2;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Story Section */
+        .story-section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+
+        .story-text h2 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            color: var(--vermelho-vivo);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        .story-text p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+
+        .story-image {
+            background: linear-gradient(135deg, var(--laranja-quente), var(--vermelho-vivo));
+            height: 400px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .story-image:hover {
+            transform: scale(1.05) rotate(2deg);
+        }
+
+        /* Values Section */
+        .values-section {
+            background: white;
+            padding: 6rem 2rem;
+            border-radius: 30px;
+            margin: 0 2rem 4rem;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.1);
+        }
+
+        .values-section h2 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            text-align: center;
+            color: var(--marrom-escuro);
+            margin-bottom: 3rem;
+            letter-spacing: 0.05em;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .value-card {
+            text-align: center;
+            padding: 2rem;
+            background: var(--creme);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .value-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(211, 47, 47, 0.2);
+        }
+
+        .value-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .value-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--vermelho-vivo);
+            margin-bottom: 1rem;
+        }
+
+        .value-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Team Section */
+        .team-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, var(--vermelho-vivo) 0%, var(--laranja-quente) 100%);
+            color: white;
+        }
+
+        .team-section h2 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            text-align: center;
+            margin-bottom: 1rem;
+            letter-spacing: 0.05em;
+        }
+
+        .team-subtitle {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-style: italic;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+
+        .team-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 6rem 2rem;
+            text-align: center;
+            background: var(--creme);
+        }
+
+        .cta-section h2 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            color: var(--marrom-escuro);
+            margin-bottom: 2rem;
+            letter-spacing: 0.05em;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: var(--vermelho-vivo);
+            color: white;
+            font-family: 'Bebas Neue', cursive;
+            font-size: 1.5rem;
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            border-radius: 50px;
+            box-shadow: 0 8px 20px rgba(211, 47, 47, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(211, 47, 47, 0.4);
+            background: var(--laranja-quente);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--marrom-escuro);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            font-family: 'Karla', sans-serif;
+        }
+
+        footer p {
+            opacity: 0.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+            }
+
+            nav {
+                padding: 1rem;
+            }
+
+            .story-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#menu">Cardápio</a></li>
+            <li><a href="sobre.html">Sobre Nós</a></li>
+            <li><a href="index.html#contato">Contato</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero-about">
+        <h1>Nossa História</h1>
+    </section>
+
+    <section class="story-section">
+        <div class="story-grid">
+            <div class="story-text">
+                <h2>Como Tudo Começou</h2>
+                <p>Em 2009, com apenas um carrinho de lanches e muito sonho, nasceu o Lanches da Vila. O que começou como uma pequena barraca na esquina se transformou no point favorito do bairro.</p>
+                <p>Nosso segredo sempre foi simples: ingredientes frescos, receitas de família e muito carinho em cada preparação.</p>
+            </div>
+            <div class="story-image">
+                🏪
+            </div>
+        </div>
+
+        <div class="story-grid">
+            <div class="story-image">
+                👨‍🍳
+            </div>
+            <div class="story-text">
+                <h2>Tradição que Alimenta</h2>
+                <p>Cada lanche é preparado com a mesma dedicação do primeiro dia. Usamos receitas que passaram de geração em geração, sempre respeitando o sabor autêntico que nossos clientes amam.</p>
+                <p>Mais de 15 anos servindo sorrisos e matando a fome de quem nos escolhe todos os dias.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="values-section">
+        <h2>Nossos Valores</h2>
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="value-icon">🌟</div>
+                <h3>Qualidade</h3>
+                <p>Ingredientes selecionados e frescos todos os dias</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">❤️</div>
+                <h3>Paixão</h3>
+                <p>Amor em cada lanche que preparamos</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">🤝</div>
+                <h3>Comunidade</h3>
+                <p>Parte da família do bairro há mais de 15 anos</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">⚡</div>
+                <h3>Agilidade</h3>
+                <p>Lanches frescos preparados na hora</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="team-section">
+        <h2>Nossa Equipe</h2>
+        <p class="team-subtitle">Unidos pela paixão de fazer os melhores lanches</p>
+        <div class="team-content">
+            <p>Somos uma equipe apaixonada pelo que fazemos. Do chapeiro ao atendimento, cada membro da nossa família trabalha com dedicação para que você tenha a melhor experiência possível.</p>
+            <p>Quando você pede um lanche aqui, não está apenas comprando comida - está fazendo parte da nossa história e da nossa comunidade.</p>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2>Venha nos Visitar!</h2>
+        <a href="index.html#contato" class="cta-button">Ver Localização</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Lanches da Vila - Feito com ❤️ e muita fome</p>
+    </footer>
+
+    <script>
+        // Scroll reveal animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease-out forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.story-grid, .value-card').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
